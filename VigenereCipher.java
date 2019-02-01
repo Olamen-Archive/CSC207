@@ -16,14 +16,14 @@ public class VigenereCipher {
       int keyLength = args[2].length();
       for (int i = 0; i < args[1].length(); i++) {
         System.out.print(
-            encodeChar(args[1].charAt(i), args[2].charAt(i % keyLength)));
+            encodeChar(args[1].charAt(i), keyLength == 0 ? 'a' : args[2].charAt(i % keyLength)));
       }
       System.out.println();
     } else if (args[0].equals("decode")) {
       int keyLength = args[2].length();
       for (int i = 0; i < args[1].length(); i++) {
         System.out.print(
-            decodeChar(args[1].charAt(i), args[2].charAt(i % keyLength)));
+            decodeChar(args[1].charAt(i), keyLength == 0 ? 'a' : args[2].charAt(i % keyLength)));
       }
       System.out.println();
     } else {
