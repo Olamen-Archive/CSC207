@@ -1,11 +1,21 @@
 public class VigenereCipher {
   public static void main(String[] args) {
+    /* Determine if we have right number of parameter */
     if (args.length != 3) {
       System.err.println("Incorrect number of parameters");
       System.exit(1);
     }
 
+	/* determine if plaintext are all lowercase */
     for (char ch : args[1].toCharArray()) {
+      if (!isLowerCase(ch)) {
+        System.err.println("Text should be all lower-case character");
+        System.exit(1);
+      }
+    }
+    
+    /* determine if key are all lowercase */
+    for (char ch : args[2].toCharArray()) {
       if (!isLowerCase(ch)) {
         System.err.println("Text should be all lower-case character");
         System.exit(1);
@@ -40,14 +50,17 @@ public class VigenereCipher {
     return encodeChar(ch, intToChar(26 - charToInt(key)));
   }
 
+  /* map a-z to 0-25 */
   private static int charToInt(char ch) {
     return (int) ch - (int) 'a';
   }
 
+  /* map 0-25 to a-z */
   private static char intToChar(int num) {
     return (char) (num + (int) 'a');
   }
 
+  /* determine if ch is lower-case letter */
   private static boolean isLowerCase(char ch) {
     return 'a' <= ch && 'z' >= ch;
   }
